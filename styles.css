@@ -1,0 +1,16 @@
+.audio-recorder-view {
+  padding: 16px;
+}
+
+.audio-recorder-view button {
+	background: var(--interactive-normal);
+	color: var(--text-normal);
+	border: 1px solid var(--background-modifier-border);
+	border-radius: 6px;
+	padding: 6px 12px;
+	cursor: pointer;
+}
+
+.audio-recorder-view button:hover {
+	background: var(--interactive-hover);
+}

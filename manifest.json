@@ -1,0 +1,10 @@
+{
+	"id": "audioworks",
+	"name": "AudioWorks",
+	"version": "1.0.0",
+	"minAppVersion": "0.15.0",
+	"description": "Adds advanced recording features and audio management tools.",
+	"author": "Nova",
+	"authorUrl": "https://github.com/sprnoova",
+	"isDesktopOnly": true
+}
