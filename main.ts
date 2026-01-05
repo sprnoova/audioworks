@@ -8,33 +8,38 @@ export default class AudioWorks extends Plugin {
 
 	async onload() {
 		console.log("Loading AudioWorks plugin...");
+
+		/* ---- SETTINGS ---- */
 		// Add settings tab
 		await this.loadSettings();
 		this.addSettingTab(new AudioWorksSettingTab(this.app, this));
 
+		/* ---- RECORDING VIEW ---- */
 		// Register the custom view
 		this.registerView(
 			VIEW_TYPE_RECORDER,
 			(leaf: WorkspaceLeaf) => new RecorderView(leaf, this)
 		);
 
-		// Command to open the recorder in a new tab
+		// Command to open the view in a new tab
 		this.addCommand({
 			id: "open-recorder-view",
 			name: "Open Audio Recorder",
-			callback: () => this.activateView(),
+			callback: () => this.openView(VIEW_TYPE_RECORDER),
 		});
 		
 		// Ribbon icon shortcut
 		this.addRibbonIcon("mic", "Open Audio Recorder", () => {
-			this.activateView();
+			this.openView(VIEW_TYPE_RECORDER);
 		});
+
 	}
 
-	async activateView() {
+	async openView(view_type: string) {
+		// Opens he given view in the active tab (by default)
 		const leaf = this.app.workspace.getLeaf(true);
 		await leaf.setViewState({
-			type: VIEW_TYPE_RECORDER,
+			type: view_type,
 			active: true,
 		});
 		this.app.workspace.revealLeaf(leaf);
@@ -49,6 +54,7 @@ export default class AudioWorks extends Plugin {
 	}
 
 	onunload() {
+		// Unloads all the recording view tabs active
 		this.app.workspace
 			.getLeavesOfType(VIEW_TYPE_RECORDER)
 			.forEach((leaf) => leaf.detach());

@@ -14,3 +14,8 @@
 .audio-recorder-view button:hover {
 	background: var(--interactive-hover);
 }
+
+.waveform-scroll {
+	width: 100%;
+	overflow-x: auto;
+}
